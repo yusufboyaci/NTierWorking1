@@ -1,8 +1,11 @@
+using DataAccess.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=BookDB;User Id=postgres;Password=123;"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

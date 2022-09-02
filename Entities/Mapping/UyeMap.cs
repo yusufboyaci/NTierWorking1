@@ -15,10 +15,11 @@ namespace Entities.Mapping
             builder.Property(x => x.Ad).HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.Soyad).HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.KullaniciAdi).HasMaxLength(50).IsRequired(false);
-            builder.Property(x => x.KullaniciYorum).HasMaxLength(50).IsRequired(false);
-            builder.Property(x => x.MailAdresi).HasMaxLength(50).IsRequired(false);
+            builder.Property(x => x.KullaniciYorum).HasMaxLength(150).IsRequired(false);
+            builder.Property(x => x.MailAdresi).HasMaxLength(250).IsRequired(false);
             builder.Property(x => x.KullaniciResimYolu).IsRequired(false);
             builder.Property(x => x.OnayliMi).IsRequired(true);
+            builder.HasMany(x => x.Makaleler).WithOne(x => x.Uye).HasForeignKey(x => x.UyeId);
             base.Configure(builder);
         }
     }
