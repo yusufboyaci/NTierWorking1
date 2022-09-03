@@ -1,4 +1,5 @@
 ﻿using Core.Mapping;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Entities.Mapping
     {
         public override void Configure(EntityTypeBuilder<Makale> builder)
         {
+            builder.ToTable("makaleler");
             builder.Property(x => x.MakaleBasligi).HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.MakaleIcerigi).HasMaxLength(10000).IsRequired(false);
             builder.Property(x => x.ResimYolu).IsRequired(false);

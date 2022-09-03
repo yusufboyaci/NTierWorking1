@@ -99,7 +99,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UyeId");
 
-                    b.ToTable("Makaleler");
+                    b.ToTable("makaleler", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Uye", b =>
@@ -189,7 +189,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Uyeler");
+                    b.ToTable("uyeler", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Makale", b =>

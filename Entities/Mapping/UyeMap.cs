@@ -1,4 +1,5 @@
 ﻿using Core.Mapping;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Entities.Mapping
     {
         public override void Configure(EntityTypeBuilder<Uye> builder)
         {
+            builder.ToTable("uyeler");
             builder.Property(x => x.Ad).HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.Soyad).HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.KullaniciAdi).HasMaxLength(50).IsRequired(false);

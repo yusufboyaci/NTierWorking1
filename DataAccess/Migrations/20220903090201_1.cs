@@ -10,15 +10,15 @@ namespace DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Uyeler",
+                name: "uyeler",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Ad = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Soyad = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     KullaniciAdi = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    KullaniciYorum = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    MailAdresi = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    KullaniciYorum = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
+                    MailAdresi = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     KullaniciResimYolu = table.Column<string>(type: "text", nullable: true),
                     Role = table.Column<int>(type: "integer", nullable: true),
                     DogumGunu = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -38,11 +38,11 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Uyeler", x => x.Id);
+                    table.PrimaryKey("PK_uyeler", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Makaleler",
+                name: "makaleler",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -67,28 +67,28 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Makaleler", x => x.Id);
+                    table.PrimaryKey("PK_makaleler", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Makaleler_Uyeler_UyeId",
+                        name: "FK_makaleler_uyeler_UyeId",
                         column: x => x.UyeId,
-                        principalTable: "Uyeler",
+                        principalTable: "uyeler",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Makaleler_UyeId",
-                table: "Makaleler",
+                name: "IX_makaleler_UyeId",
+                table: "makaleler",
                 column: "UyeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Makaleler");
+                name: "makaleler");
 
             migrationBuilder.DropTable(
-                name: "Uyeler");
+                name: "uyeler");
         }
     }
 }

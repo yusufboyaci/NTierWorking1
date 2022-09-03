@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220902155140_2")]
-    partial class _2
+    [Migration("20220903090201_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -101,7 +101,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UyeId");
 
-                    b.ToTable("Makaleler");
+                    b.ToTable("makaleler", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Uye", b =>
@@ -150,8 +150,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("character varying(150)");
 
                     b.Property<string>("MailAdresi")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<Guid?>("MasterId")
                         .HasColumnType("uuid");
@@ -191,7 +191,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Uyeler");
+                    b.ToTable("uyeler", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Makale", b =>

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Context
 {
+    //Postgre Sql de sorguları çift tırnaklar içerisinde yap 
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -23,6 +24,7 @@ namespace DataAccess.Context
         public DbSet<Makale> Makaleler { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.HasDefaultSchema("public");
             modelBuilder.ApplyConfiguration(new MakaleMap());
             modelBuilder.ApplyConfiguration(new UyeMap());
             base.OnModelCreating(modelBuilder);
