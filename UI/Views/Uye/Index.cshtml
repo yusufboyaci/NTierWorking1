@@ -7,20 +7,16 @@
 <h1>Index</h1>
 
 <p>
-    <a class="btn btn-outline-primary" asp-action="Create">Create New</a>
+    <a class="btn btn-outline-primary" asp-action="Create">Kayıt Ekle</a>
 </p>
 
-<table class="table" data-toggle="table"
-       data-click-to-select="true"
-       data-show-colums="true"
-       data-checkbox-header="false"
-       data-multiple-select-row="true"
-       data-toolbar="#toolbar"
+<table id="table" 
+       data-toggle="table"
+       data-search="true"
        data-pagination="true"
-       data-search="true">
+       data-local="tr-TR">
     <thead>
         <tr>
-            @* <th id="chk" data-field="state" data-checkbox="true"></th>*@
             <th data-field="ad">
                 @Html.DisplayNameFor(model => model.Ad)
             </th>
@@ -48,47 +44,48 @@
             <th data-field=onayliMi>
                 @Html.DisplayNameFor(model => model.OnayliMi)
             </th>
-        
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Soyad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KullaniciAdi)
-            </td>
-            <td>             
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KullaniciAdi)
+                </td>
+                <td>
                     @Html.Raw(item.KullaniciYorum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MailAdresi)
-            </td>
-            <td>
-                    <img src="~/resimler/@item.KullaniciResimYolu" class="rounded-circle" width="150"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DogumGunu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OnayliMi)
-            </td>
-       
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MailAdresi)
+                </td>
+                <td>
+                    <img src="~/resimler/@item.KullaniciResimYolu" class="rounded-circle" width="50" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DogumGunu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OnayliMi)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

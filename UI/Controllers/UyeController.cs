@@ -19,12 +19,12 @@ namespace UI.Controllers
         public IActionResult Index()
         {
             List<UyeVM> liste = new List<UyeVM>();
-            UyeVM nesne = new UyeVM();
             List<Uye> uyeler = _uyeRepository.GetActive();
             if (uyeler != null)
             {
                 foreach (Uye item in uyeler)
                 {
+                    UyeVM nesne = new UyeVM();
                     nesne.Id = item.Id;
                     nesne.Ad = item.Ad;
                     nesne.Soyad = item.Soyad;
@@ -34,7 +34,7 @@ namespace UI.Controllers
                     nesne.KullaniciResimYolu = item.KullaniciResimYolu;
                     nesne.DogumGunu = item.DogumGunu;
                     nesne.OnayliMi = item.OnayliMi;
-                    liste.Add(nesne);
+                liste.Add(nesne);
                 }
             }
             return View(liste);
@@ -72,8 +72,8 @@ namespace UI.Controllers
                             uyeVM.KullaniciResimYolu = uyeVM.KullaniciResim.FileName;
                             uye.KullaniciResimYolu = uyeVM.KullaniciResimYolu;
                         }
-                    _uyeRepository.Add(uye);
-                    _uyeRepository.Activate(uye.Id);
+                        _uyeRepository.Add(uye);
+                        _uyeRepository.Activate(uye.Id);
                     }
                     else
                     {

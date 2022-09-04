@@ -40,14 +40,15 @@ namespace UI.Models.ViewModels
         [Display(Name = "Resminiz")]
         [DataType(DataType.ImageUrl)]
         public string? KullaniciResimYolu { get; set; }
-        public IFormFile KullaniciResim { get; set; }
+        public IFormFile? KullaniciResim { get; set; }
         [Display(Name = "Rolünüz")]
         public Role? Role { get; set; }
         [Display(Name ="Doğum Tarihi")]
         [Required(ErrorMessage = "Lütfen bu alanı boş bırakmayanız!")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString ="dd/mm/yyyy")]
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]//önemli tarih gösterme yöntemi
         public DateTime? DogumGunu { get; set; }
+        [Display(Name ="Onaylı")]
         public bool OnayliMi { get; set; }
     }
 }

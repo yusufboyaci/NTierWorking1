@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
-                <select asp-for="Role" asp-items="Html.GetEnumSelectList<Role>()" class="form-control">
+                <select asp-for="Role" asp-items="Html.GetEnumSelectList<Role>()" class="form-select">
                 </select>
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
@@ -59,14 +59,14 @@
                 </label>
             </div>           
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Ekle" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="link-success" asp-action="Index">Geri Dön</a>
 </div>
 <script>
     CKEDITOR.replace('KullaniciYorum');
