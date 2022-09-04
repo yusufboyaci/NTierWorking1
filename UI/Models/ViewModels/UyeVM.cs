@@ -40,6 +40,7 @@ namespace UI.Models.ViewModels
         [Display(Name = "Resminiz")]
         [DataType(DataType.ImageUrl)]
         public string? KullaniciResimYolu { get; set; }
+        public IFormFile KullaniciResim { get; set; }
         [Display(Name = "Rolünüz")]
         public Role? Role { get; set; }
         [Display(Name ="Doğum Tarihi")]

@@ -20,7 +20,7 @@ namespace DataAccess.Repositories.Concrete
             _context = context;
         }
 
-        public bool Active(Guid id)
+        public bool Activate(Guid id)
         {
             T activated = GetById(id);
             activated.Status = Status.Active;

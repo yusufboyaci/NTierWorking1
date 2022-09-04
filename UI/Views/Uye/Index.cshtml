@@ -7,36 +7,45 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-outline-primary" asp-action="Create">Create New</a>
 </p>
-<table class="table" data-toggle="table">
+
+<table class="table" data-toggle="table"
+       data-click-to-select="true"
+       data-show-colums="true"
+       data-checkbox-header="false"
+       data-multiple-select-row="true"
+       data-toolbar="#toolbar"
+       data-pagination="true"
+       data-search="true">
     <thead>
         <tr>
-            <th>
+            @* <th id="chk" data-field="state" data-checkbox="true"></th>*@
+            <th data-field="ad">
                 @Html.DisplayNameFor(model => model.Ad)
             </th>
-            <th>
+            <th data-field="soyad">
                 @Html.DisplayNameFor(model => model.Soyad)
             </th>
-            <th>
+            <th data-field="kullaniciAdi">
                 @Html.DisplayNameFor(model => model.KullaniciAdi)
             </th>
-            <th>
+            <th data-field="kullaniciYorum">
                 @Html.DisplayNameFor(model => model.KullaniciYorum)
             </th>
-            <th>
+            <th data-field="mailAdresi">
                 @Html.DisplayNameFor(model => model.MailAdresi)
             </th>
-            <th>
+            <th data-field="kullaniciResimYolu">
                 @Html.DisplayNameFor(model => model.KullaniciResimYolu)
             </th>
-            <th>
+            <th data-field=role>
                 @Html.DisplayNameFor(model => model.Role)
             </th>
-            <th>
+            <th data-field=dogumGunu>
                 @Html.DisplayNameFor(model => model.DogumGunu)
             </th>
-            <th>
+            <th data-field=onayliMi>
                 @Html.DisplayNameFor(model => model.OnayliMi)
             </th>
         
@@ -55,14 +64,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KullaniciAdi)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KullaniciYorum)
+            <td>             
+                    @Html.Raw(item.KullaniciYorum)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MailAdresi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KullaniciResimYolu)
+                    <img src="~/resimler/@item.KullaniciResimYolu" class="rounded-circle" width="150"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Role)

@@ -21,7 +21,7 @@ namespace DataAccess.Repositories.Abstract
         List<T> GetActive();
         List<T> GetDefault(Expression<Func<T, bool>> exp);
         List<T> GetAll();
-        bool Active(Guid id);
+        bool Activate(Guid id);
         bool Any(Expression<Func<T, bool>> exp);
         int Save();
     }
