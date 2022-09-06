@@ -83,13 +83,11 @@
                 <td>
                     <a asp-action="Update" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
 
                     <!-- Button trigger modal -->
                     <a href="#" id="deleteItem" class="deleteItem" data-path="@Url.Action("Delete", "Uye", new { id = @item.Id })" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Delete
                     </a>
-
                 </td>
             </tr>
         }
