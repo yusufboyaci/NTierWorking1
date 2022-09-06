@@ -2,6 +2,7 @@
 using DataAccess.Repositories.Concrete;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using UI.Models.ViewModels;
 
 namespace UI.Controllers
@@ -86,6 +87,76 @@ namespace UI.Controllers
             {
                 return RedirectToAction("Error", "Shared");
             }
+            return RedirectToAction("Index", "Uye");
+        }
+        [HttpGet]
+        public IActionResult Update(Guid id)
+        {
+            Uye uye = _uyeRepository.GetById(id);
+            if (uye != null)
+            {
+                UyeVM uyeVM = new UyeVM();
+                uyeVM.Id = uye.Id;
+                uyeVM.Ad = uye.Ad;
+                uyeVM.Soyad = uye.Soyad;
+                uyeVM.KullaniciAdi = uye.KullaniciAdi;
+                uyeVM.KullaniciYorum = uye.KullaniciYorum;
+                uyeVM.MailAdresi = uye.MailAdresi;
+                uyeVM.KullaniciResimYolu = uye.KullaniciResimYolu;
+                uyeVM.Role = (Role?)uye.Role;
+                uyeVM.DogumGunu = uye.DogumGunu;
+                uyeVM.OnayliMi = uye.OnayliMi;
+            return View(uyeVM);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Shared");
+            }
+        }
+        [HttpPost]
+        public IActionResult Update(UyeVM uyeVM)
+        {
+            if (ModelState.IsValid)
+            {
+                Uye uye = new Uye();
+                uye.Ad = uyeVM.Ad;
+                uye.Soyad = uyeVM.Soyad;
+                uye.KullaniciAdi = uyeVM.KullaniciAdi;
+                uye.KullaniciYorum = uyeVM.KullaniciYorum;
+                uye.MailAdresi = uyeVM.MailAdresi;
+                uye.DogumGunu = uyeVM.DogumGunu;
+                uye.Role = (Core.Enum.Role?)uyeVM.Role;
+                uye.OnayliMi = uyeVM.OnayliMi;
+                if (uyeVM.KullaniciResim != null)
+                {
+                    string resim = Path.Combine(_webHostEnvironment.WebRootPath, "resimler");
+                    if (uyeVM.KullaniciResim.Length > 0)
+                    {
+                        using (FileStream file = new FileStream(Path.Combine(resim, uyeVM.KullaniciResim.FileName), FileMode.Create))
+                        {
+                            uyeVM.KullaniciResim.CopyTo(file);
+                        }
+                        uyeVM.KullaniciResimYolu = uyeVM.KullaniciResim.FileName;
+                        uye.KullaniciResimYolu = uyeVM.KullaniciResimYolu;
+                    }
+                    _uyeRepository.Update(uye);
+                    _uyeRepository.Activate(uye.Id);
+                }
+                else
+                {
+                    _uyeRepository.Update(uye);
+                    _uyeRepository.Activate(uye.Id);
+                }
+                return RedirectToAction("Index", "Uye");
+            }
+                return RedirectToAction("Error", "Shared");
+        }
+        public IActionResult Delete(UyeVM uyeVM)
+        {
+            Uye uye = _uyeRepository.GetById(uyeVM.Id);
+            
+            _uyeRepository.Remove(uye);
+
             return RedirectToAction("Index", "Uye");
         }
     }

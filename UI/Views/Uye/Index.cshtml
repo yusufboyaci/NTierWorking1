@@ -81,11 +81,50 @@
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Update" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+
+                    <!-- Button trigger modal -->
+                    <a href="#" id="deleteItem" class="deleteItem" data-path="@Url.Action("Delete", "Uye", new { id = @item.Id })" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Delete
+                    </a>
+
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Silmek istediğinize Emin misiniz!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button id="btnContinueDelete" type="button" class="btn btn-danger">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var path_to_delete;//Delete için modal çalıştırmada gerekli olan kod
+    $(document).ready(function(){
+        $('.deleteItem').click(function () {
+            path_to_delete = $(this).data('path');
+        });
+        $('#btnContinueDelete').click(function () {
+            window.location.href = path_to_delete;
+        });
+    });
+   
+</script>

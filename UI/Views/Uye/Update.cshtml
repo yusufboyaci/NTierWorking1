@@ -1,0 +1,74 @@
+﻿@model UyeVM
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<h4>Uye</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ad" class="control-label"></label>
+                <input asp-for="Ad" class="form-control" />
+                <span asp-validation-for="Ad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Soyad" class="control-label"></label>
+                <input asp-for="Soyad" class="form-control" />
+                <span asp-validation-for="Soyad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KullaniciAdi" class="control-label"></label>
+                <input asp-for="KullaniciAdi" class="form-control" />
+                <span asp-validation-for="KullaniciAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KullaniciYorum" class="control-label"></label>
+                <textarea asp-for="KullaniciYorum" name="KullaniciYorum" class="form-control"></textarea>
+                <span asp-validation-for="KullaniciYorum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MailAdresi" class="control-label"></label>
+                <input asp-for="MailAdresi" class="form-control" />
+                <span asp-validation-for="MailAdresi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KullaniciResimYolu" class="control-label"></label>
+                <input asp-for="KullaniciResimYolu" class="form-control" />
+                <span asp-validation-for="KullaniciResimYolu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DogumGunu" class="control-label"></label>
+                <input asp-for="DogumGunu" class="form-control" />
+                <span asp-validation-for="DogumGunu" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="OnayliMi" /> @Html.DisplayNameFor(model => model.OnayliMi)
+                </label>
+            </div>
+            <input type="hidden" asp-for="Id" />           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+    CKEDITOR.replace('KullaniciYorum');
+</script>
+
