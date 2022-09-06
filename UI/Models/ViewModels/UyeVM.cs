@@ -46,7 +46,7 @@ namespace UI.Models.ViewModels
         [Display(Name ="Doğum Tarihi")]
         [Required(ErrorMessage = "Lütfen bu alanı boş bırakmayanız!")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]//önemli tarih gösterme yöntemi
+        [DisplayFormat(DataFormatString = "{0:dd/mm/yyyy}")]//önemli tarih gösterme yöntemi
         public DateTime? DogumGunu { get; set; }
         [Display(Name ="Onaylı")]
         public bool OnayliMi { get; set; }

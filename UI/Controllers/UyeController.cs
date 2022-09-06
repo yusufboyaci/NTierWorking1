@@ -119,6 +119,7 @@ namespace UI.Controllers
             if (ModelState.IsValid)
             {
                 Uye uye = new Uye();
+                uye.Id = uyeVM.Id;
                 uye.Ad = uyeVM.Ad;
                 uye.Soyad = uyeVM.Soyad;
                 uye.KullaniciAdi = uyeVM.KullaniciAdi;
@@ -141,12 +142,12 @@ namespace UI.Controllers
                     }
                     _uyeRepository.Update(uye);
                     _uyeRepository.Activate(uye.Id);
-                }
-                else
-                {
-                    _uyeRepository.Update(uye);
-                    _uyeRepository.Activate(uye.Id);
-                }
+               }
+               else
+               {
+                   _uyeRepository.Update(uye);
+                   _uyeRepository.Activate(uye.Id);
+               }
                 return RedirectToAction("Index", "Uye");
             }
                 return RedirectToAction("Error", "Shared");
