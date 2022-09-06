@@ -1,12 +1,9 @@
 ﻿@model UyeVM
 
 @{
-    ViewData["Title"] = "Update";
+    ViewData["Title"] = "Güncelle";
 }
-
-<h1>Update</h1>
-
-<h4>Uye</h4>
+<h4>Üye Güncelleme Bölümü</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
@@ -60,14 +57,14 @@
             </div>
             <input type="hidden" asp-for="Id" />           
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-success mt-2" asp-action="Index">Geri Dön</a>
 </div>
 <script>
     CKEDITOR.replace('KullaniciYorum');
