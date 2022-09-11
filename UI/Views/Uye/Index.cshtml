@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<UyeVM>
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -10,7 +9,7 @@
     <a class="btn btn-outline-primary" asp-action="Create">Kayıt Ekle</a>
 </p>
 
-<table id="table" 
+<table id="table"
        data-toggle="table"
        data-search="true"
        data-pagination="true"
@@ -44,8 +43,7 @@
             <th data-field=onayliMi>
                 @Html.DisplayNameFor(model => model.OnayliMi)
             </th>
-
-            <th></th>
+            <th data-field="operate" data-events="operateEvents"></th>
         </tr>
     </thead>
     <tbody>
@@ -81,49 +79,34 @@
                 </td>
 
                 <td>
-                    <a asp-action="Update" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
-                    @if(item.OnayliMi != true){
-                    <!-- Button trigger modal -->
-                    <span>|</span><a href="#" id="deleteItem" class="deleteItem" data-path="@Url.Action("Delete", "Uye", new { id = @item.Id })" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Delete
-                    </a>
-                    }
+                    <a class="btn btn-warning me-2" asp-action="Update" asp-route-id="@item.Id"><i class="fa-solid fa-pen"></i></a>
+                    <a class="btn btn-info me-2" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-info"></i></a>
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+               @*     <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>*@
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               Silmek istediğinize Emin misiniz!
+                Silmek istediğinize Emin misiniz!
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                <button id="btnContinueDelete" type="button" class="btn btn-danger">Sil</button>
+                <button type="button" class="btn btn-danger btnDelete">Sil</button>
             </div>
         </div>
     </div>
 </div>
-<script>
-    var path_to_delete;//Delete için modal çalıştırmada gerekli olan kod
-    $(document).ready(function(){
-        $('.deleteItem').click(function () {
-            path_to_delete = $(this).data('path');
-        });
-        $('#btnContinueDelete').click(function () {
-            window.location.href = path_to_delete;
-        });
-    });
-   
-</script>
+

@@ -35,7 +35,7 @@ namespace UI.Controllers
                     nesne.KullaniciResimYolu = item.KullaniciResimYolu;
                     nesne.DogumGunu = item.DogumGunu;
                     nesne.OnayliMi = item.OnayliMi;
-                liste.Add(nesne);
+                    liste.Add(nesne);
                 }
             }
             return View(liste);
@@ -106,7 +106,7 @@ namespace UI.Controllers
                 uyeVM.Role = (Role?)uye.Role;
                 uyeVM.DogumGunu = uye.DogumGunu;
                 uyeVM.OnayliMi = uye.OnayliMi;
-            return View(uyeVM);
+                return View(uyeVM);
             }
             else
             {
@@ -142,20 +142,20 @@ namespace UI.Controllers
                     }
                     _uyeRepository.Update(uye);
                     _uyeRepository.Activate(uye.Id);
-               }
-               else
-               {
-                   _uyeRepository.Update(uye);
-                   _uyeRepository.Activate(uye.Id);
-               }
+                }
+                else
+                {
+                    _uyeRepository.Update(uye);
+                    _uyeRepository.Activate(uye.Id);
+                }
                 return RedirectToAction("Index", "Uye");
             }
-                return RedirectToAction("Error", "Shared");
-        }
-        public IActionResult Delete(UyeVM uyeVM)
+            return RedirectToAction("Error", "Shared");
+        }     
+        public IActionResult Delete(Guid id)
         {
-            Uye uye = _uyeRepository.GetById(uyeVM.Id);
-            
+            Uye uye = _uyeRepository.GetById(id);
+
             _uyeRepository.Remove(uye);
 
             return RedirectToAction("Index", "Uye");
