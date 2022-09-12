@@ -12,7 +12,7 @@ namespace UI.Models.ViewModels
         [Key]
         public Guid Id { get; set; }
         [DisplayName("Makale İçeriği")]
-        [Required(ErrorMessage ="Makale içeriği gereklidir!")]
+        [Required(ErrorMessage ="Makale İçeriği gereklidir!")]
         [MaxLength(10000, ErrorMessage = "10000 karakterden fazla değer girmeyiniz")]
         public string? MakaleIcerigi { get; set; }
         [DisplayName("Makale Başlığı")]
@@ -21,10 +21,12 @@ namespace UI.Models.ViewModels
         [Display(Name = "Makale Resmi")]
         [DataType(DataType.ImageUrl)]
         public string? ResimYolu { get; set; }
+        public IFormFile? Resim { get; set; }
         [Display(Name ="Okunma Sayısı")]
         [ReadOnly(true)]
         public int OkunmaSayisi { get; set; }
         public bool OnayliMi { get; set; }
+        [HiddenInput]
         public Guid UyeId { get; set; } //FK
     }
 }

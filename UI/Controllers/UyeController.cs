@@ -33,6 +33,7 @@ namespace UI.Controllers
                     nesne.KullaniciYorum = item.KullaniciYorum;
                     nesne.MailAdresi = item.MailAdresi;
                     nesne.KullaniciResimYolu = item.KullaniciResimYolu;
+                    nesne.Role = (Role?)item.Role;
                     nesne.DogumGunu = item.DogumGunu;
                     nesne.OnayliMi = item.OnayliMi;
                     liste.Add(nesne);
@@ -151,7 +152,7 @@ namespace UI.Controllers
                 return RedirectToAction("Index", "Uye");
             }
             return RedirectToAction("Error", "Shared");
-        }     
+        }
         public IActionResult Delete(Guid id)
         {
             Uye uye = _uyeRepository.GetById(id);
@@ -159,6 +160,29 @@ namespace UI.Controllers
             _uyeRepository.Remove(uye);
 
             return RedirectToAction("Index", "Uye");
+        }
+        public IActionResult UyeInfo(Guid id)
+        {
+            Uye uye = _uyeRepository.GetById(id);
+            if (uye != null)
+            {
+                UyeVM uyeVM = new UyeVM();
+                uyeVM.Id = uye.Id;
+                uyeVM.Ad = uye.Ad;
+                uyeVM.Soyad = uye.Soyad;
+                uyeVM.KullaniciAdi = uye.KullaniciAdi;
+                uyeVM.KullaniciYorum = uye.KullaniciYorum;
+                uyeVM.MailAdresi = uye.MailAdresi;
+                uyeVM.KullaniciResimYolu = uye.KullaniciResimYolu;
+                uyeVM.Role = (Role?)uye.Role;
+                uyeVM.DogumGunu = uye.DogumGunu;
+                uyeVM.OnayliMi = uye.OnayliMi;
+                return View(uyeVM);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Shared");
+            }
         }
     }
 }

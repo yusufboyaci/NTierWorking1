@@ -1,0 +1,54 @@
+﻿@model MakaleVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Makale Ekleme Bölümü</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
+           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MakaleIcerigi" class="control-label"></label>
+                <textarea asp-for="MakaleIcerigi" name="MakaleIcerigi" class="form-control"></textarea>
+                <span asp-validation-for="MakaleIcerigi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MakaleBasligi" class="control-label"></label>
+                <input asp-for="MakaleBasligi" class="form-control" />
+                <span asp-validation-for="MakaleBasligi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResimYolu" class="control-label"></label>
+                <input asp-for="Resim" type="file" class="form-control" accept=".jpg,.png,.gif,.jpeg" />
+                <span asp-validation-for="ResimYolu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OkunmaSayisi" class="control-label"></label>
+                <input type="number" asp-for="OkunmaSayisi" class="form-control" />
+                <span asp-validation-for="OkunmaSayisi" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="OnayliMi" /> @Html.DisplayNameFor(model => model.OnayliMi)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="link-success" asp-action="Index">Geri Dön</a>
+</div>
+<script>
+    CKEDITOR.replace('MakaleIcerigi');
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

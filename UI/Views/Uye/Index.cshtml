@@ -43,7 +43,7 @@
             <th data-field=onayliMi>
                 @Html.DisplayNameFor(model => model.OnayliMi)
             </th>
-            <th data-field="operate" data-events="operateEvents"></th>
+            <th data-field="operate"></th>
         </tr>
     </thead>
     <tbody>
@@ -79,9 +79,10 @@
                 </td>
 
                 <td>
-                    <a class="btn btn-warning me-2" asp-action="Update" asp-route-id="@item.Id"><i class="fa-solid fa-pen"></i></a>
-                    <a class="btn btn-info me-2" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-info"></i></a>
-                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+                    <a class="btn btn-warning m-2" asp-action="Update" asp-route-id="@item.Id"><i class="fa-solid fa-pen"></i></a>
+                    <a class="btn btn-info m-2" asp-action="UyeInfo" asp-route-id="@item.Id"><i class="fa-solid fa-info"></i></a>
+                    <a class="btn btn-primary m-2" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+                    <a class="btn btn-success m-2" asp-controller="Makale" asp-action="Index" asp-route-id="@item.Id"><i class="fa-solid fa-pen-nib"></i></a>
                @*     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="fa-solid fa-trash"></i>

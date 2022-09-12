@@ -1,0 +1,72 @@
+﻿@model UyeVM
+
+@{
+    ViewData["Title"] = "UyeInfo";
+}
+
+<h1>Uye Bilgileri</h1>
+
+<div>
+    <h4>Uye</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Soyad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Soyad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KullaniciAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciYorum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.KullaniciYorum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MailAdresi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MailAdresi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(x => x.KullaniciResimYolu)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/resimler/@Model.KullaniciResimYolu" class="rounded-circle" width="50" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DogumGunu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DogumGunu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OnayliMi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OnayliMi)
+        </dd>
+            </dl>
+</div>
+<div>
+    <a class="link-primary" asp-action="Update" asp-route-id="@Model?.Id"><i class="fa-solid fa-pen"></i></a> |
+    <a class="link-success" asp-action="Index">Geri Dön</a>
+</div>
