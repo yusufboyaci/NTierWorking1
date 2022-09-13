@@ -153,9 +153,34 @@ namespace UI.Controllers
             }
             return RedirectToAction("Error", "Shared");
         }
+        [HttpGet]
         public IActionResult Delete(Guid id)
         {
-            _uyeRepository.Remove(id);
+            Uye uye = _uyeRepository.GetById(id);
+            if (uye != null)
+            {
+                UyeVM uyeVM = new UyeVM();
+                uyeVM.Id = uye.Id;
+                uyeVM.Ad = uye.Ad;
+                uyeVM.Soyad = uye.Soyad;
+                uyeVM.KullaniciAdi = uye.KullaniciAdi;
+                uyeVM.KullaniciYorum = uye.KullaniciYorum;
+                uyeVM.MailAdresi = uye.MailAdresi;
+                uyeVM.KullaniciResimYolu = uye.KullaniciResimYolu;
+                uyeVM.Role = (Role?)uye.Role;
+                uyeVM.DogumGunu = uye.DogumGunu;
+                uyeVM.OnayliMi = uye.OnayliMi;
+                return View(uyeVM);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Shared");
+            }
+        }
+        [HttpPost]
+        public IActionResult Delete(UyeVM uyeVM)
+        {
+            _uyeRepository.Remove(uyeVM.Id);
             return RedirectToAction("Index", "Uye");
         }
         public IActionResult UyeInfo(Guid id)

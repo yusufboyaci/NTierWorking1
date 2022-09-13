@@ -1,0 +1,75 @@
+﻿@model UyeVM
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Uye</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Soyad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Soyad)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KullaniciAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciYorum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.KullaniciYorum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MailAdresi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MailAdresi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciResimYolu)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/resimler/@Model.KullaniciResimYolu" class="rounded-circle" width="50" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DogumGunu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DogumGunu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OnayliMi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OnayliMi)
+        </dd>     
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger m-2" /> 
+        <a class="link-success m-2" asp-action="Index">Geri Dön</a>
+    </form>
+</div>
