@@ -2,6 +2,7 @@
 using DataAccess.Context;
 using DataAccess.Repositories.Concrete;
 using Entities;
+using Entities.Mapping;
 using Microsoft.AspNetCore.Mvc;
 using UI.Models.ViewModels;
 
@@ -10,10 +11,12 @@ namespace UI.Controllers
     public class MakaleController : Controller
     {
         MakaleRepository _makaleRepository;
+        UyeRepository _uyeRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         public MakaleController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _makaleRepository = new MakaleRepository(context);
+            _uyeRepository = new UyeRepository(context);
             _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index(Guid id)
@@ -26,6 +29,7 @@ namespace UI.Controllers
                 {
                     MakaleVM makaleVM = new MakaleVM();
                     makaleVM.Id = item.Id;
+                    makaleVM.UyeId = item.UyeId;
                     makaleVM.MakaleBasligi = item.MakaleBasligi;
                     makaleVM.MakaleIcerigi = item.MakaleIcerigi;
                     makaleVM.ResimYolu = item.ResimYolu;
@@ -39,12 +43,12 @@ namespace UI.Controllers
         [HttpGet]
         public IActionResult Create() => View();
         [HttpPost]
-        public IActionResult Create(MakaleVM makaleVM)
+        public IActionResult Create(MakaleVM makaleVM, Guid id)
         {
             if (ModelState.IsValid && makaleVM != null)
             {
                 Makale makale = new Makale();
-                makale.Id = makaleVM.Id;
+                makale.UyeId = id;
                 makale.MakaleBasligi = makaleVM.MakaleBasligi;
                 makale.MakaleIcerigi = makaleVM.MakaleIcerigi;
                 makale.OkunmaSayisi = makaleVM.OkunmaSayisi;
@@ -74,12 +78,75 @@ namespace UI.Controllers
             {
                 return RedirectToAction("Error", "Shared");
             }
-            return RedirectToAction("Index", "Uye");
+            return RedirectToAction("Index", "Makale", new { id = id});
         }
-
+        [HttpGet]
+        public IActionResult Update(Guid id)
+        {
+            Makale makale = _makaleRepository.GetById(id);
+            if (makale != null)
+            {
+                MakaleVM makaleVM = new MakaleVM();
+                makaleVM.Id = makale.Id;
+                makaleVM.UyeId = makale.UyeId;
+                makaleVM.MakaleIcerigi = makale.MakaleIcerigi;
+                makaleVM.MakaleBasligi = makale.MakaleBasligi;
+                makaleVM.ResimYolu = makale.ResimYolu;
+                makaleVM.OkunmaSayisi = makale.OkunmaSayisi;
+                makaleVM.OnayliMi = makale.OnayliMi;
+                return View(makaleVM);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Shared");
+            }
+        }
+        [HttpPost]
+        public IActionResult Update(MakaleVM makaleVM)
+        {
+            if (ModelState.IsValid && makaleVM != null)
+            {
+                Makale makale = new Makale();
+                makale.Id = makaleVM.Id;
+                makale.MakaleBasligi = makaleVM.MakaleBasligi;
+                makale.MakaleIcerigi = makaleVM.MakaleIcerigi;
+                makale.OkunmaSayisi = makaleVM.OkunmaSayisi;
+                makale.OnayliMi = makaleVM.OnayliMi;
+                if (makaleVM.Resim != null)
+                {
+                    string resim = Path.Combine(_webHostEnvironment.WebRootPath, "resimler");
+                    if (makaleVM.Resim.Length > 0)
+                    {
+                        using (FileStream file = new FileStream(Path.Combine(resim, makaleVM.Resim.FileName), FileMode.Create))
+                        {
+                            makaleVM.Resim.CopyTo(file);
+                        }
+                        makaleVM.ResimYolu = makaleVM.Resim.FileName;
+                        makale.ResimYolu = makaleVM.ResimYolu;
+                    }
+                    _makaleRepository.Update(makale);
+                    _makaleRepository.Activate(makale.Id);
+                }
+                else
+                {
+                    _makaleRepository.Update(makale);
+                    _makaleRepository.Activate(makale.Id);
+                }
+                return RedirectToAction("Index", "Makale", new { id = makaleVM.UyeId });
+            }
+            else
+            {
+                return RedirectToAction("Error", "Shared");
+            }
+        }
+        public IActionResult Delete(Guid id)
+        {
+            _makaleRepository.Remove(id);
+            return RedirectToAction("Index", "Makale");
+        }
         public IActionResult MakaleGoster(Guid id)
         {
-            Makale makale = _makaleRepository.GetByDefault(x => x.UyeId == id);
+            Makale makale = _makaleRepository.GetById(id);
             if (makale != null)
             {
                 MakaleVM makaleVM = new MakaleVM();

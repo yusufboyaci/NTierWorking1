@@ -155,10 +155,7 @@ namespace UI.Controllers
         }
         public IActionResult Delete(Guid id)
         {
-            Uye uye = _uyeRepository.GetById(id);
-
-            _uyeRepository.Remove(uye);
-
+            _uyeRepository.Remove(id);
             return RedirectToAction("Index", "Uye");
         }
         public IActionResult UyeInfo(Guid id)

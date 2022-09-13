@@ -6,10 +6,6 @@
 
 <h1>Index</h1>
 
-<p>
-    <a class="btn btn-outline-primary" asp-action="Create">Kayıt Ekle</a>
-</p>
-
 <table id="table"
        class="table"
        data-toggle="table"
@@ -56,11 +52,12 @@
                     @Html.DisplayFor(modelItem => item.OnayliMi)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-warning m-2" asp-action="Update" asp-route-id="@item.Id"><i class="fa-solid fa-pen"></i></a> 
+                    <a class="btn btn-info m-2" asp-action="MakaleGoster" asp-route-id="@item.Id"><i class="fa-solid fa-info"></i></a> 
+                    <a class="btn btn-primary m-2" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<a class="link-success" asp-controller="Uye" asp-action="Index">Geri Dön</a>

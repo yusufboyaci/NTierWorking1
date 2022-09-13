@@ -1,17 +1,17 @@
 ﻿@model MakaleVM
 
 @{
-    ViewData["Title"] = "Makale Ekleme Bölümü";
+    ViewData["Title"] = "Makale Güncelleme Bölümü";
 }
 
-<h4>Makale Ekleme Bölümü</h4>
+<h4>Makale Güncelleme Bölümü</h4>
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Create" enctype="multipart/form-data">
-           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MakaleBasligi" class="control-label"></label>
+        <form asp-action="Update" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group">
+               <label asp-for="MakaleBasligi" class="control-label"></label>
                 <input asp-for="MakaleBasligi" class="form-control" />
                 <span asp-validation-for="MakaleBasligi" class="text-danger"></span>
             </div>
@@ -19,7 +19,7 @@
                 <label asp-for="MakaleIcerigi" class="control-label"></label>
                 <textarea asp-for="MakaleIcerigi" name="MakaleIcerigi" class="form-control"></textarea>
                 <span asp-validation-for="MakaleIcerigi" class="text-danger"></span>
-            </div>          
+            </div>
             <div class="form-group">
                 <label asp-for="ResimYolu" class="control-label"></label>
                 <input asp-for="Resim" type="file" class="form-control" accept=".jpg,.png,.gif,.jpeg" />
@@ -35,20 +35,23 @@
                     <input class="form-check-input" asp-for="OnayliMi" /> @Html.DisplayNameFor(model => model.OnayliMi)
                 </label>
             </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="UyeId" />
             <div class="form-group">
-                <input type="submit" value="Ekle" class="btn btn-primary" />
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a class="link-success" asp-controller="Uye" asp-action="Index">Geri Dön</a>
+    <a class="link-success" asp-action="Index" asp-route-id="@Model.UyeId">Geri dön</a>
 </div>
 <script>
     CKEDITOR.replace('MakaleIcerigi');
 </script>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
