@@ -83,8 +83,9 @@ namespace DataAccess.Repositories.Concrete
                 {
                     T deleted = GetById(id);
                     deleted.Status = Status.Deleted;
+                    Update(deleted);
                     ts.Complete();
-                    return Update(deleted);
+                    return true;
                 }
             }
             catch

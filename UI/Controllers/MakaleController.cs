@@ -78,7 +78,7 @@ namespace UI.Controllers
             {
                 return RedirectToAction("Error", "Shared");
             }
-            return RedirectToAction("Index", "Makale", new { id = id});
+            return RedirectToAction("Index", "Makale", new { id = id });
         }
         [HttpGet]
         public IActionResult Update(Guid id)
@@ -140,10 +140,39 @@ namespace UI.Controllers
                 return RedirectToAction("Error", "Shared");
             }
         }
+        [HttpGet]
         public IActionResult Delete(Guid id)
         {
-            _makaleRepository.Remove(id);
-            return RedirectToAction("Index", "Makale");
+            Makale makale = _makaleRepository.GetById(id);
+            if (makale != null)
+            {
+                MakaleVM makaleVM = new MakaleVM();
+                makaleVM.Id = makale.Id;
+                makaleVM.UyeId = makale.UyeId;
+                makaleVM.MakaleIcerigi = makale.MakaleIcerigi;
+                makaleVM.MakaleBasligi = makale.MakaleBasligi;
+                makaleVM.ResimYolu = makale.ResimYolu;
+                makaleVM.OkunmaSayisi = makale.OkunmaSayisi;
+                makaleVM.OnayliMi = makale.OnayliMi;
+                return View(makaleVM);
+            }
+            else
+            {
+                return RedirectToAction("Error", "Shared");
+            }
+        }
+        [HttpPost]
+        public IActionResult Delete(MakaleVM makaleVM)
+        {
+            if (makaleVM != null)
+            {
+                _makaleRepository.Remove(makaleVM.Id);
+                return RedirectToAction("Index", "Makale", new { id = makaleVM.UyeId });
+            }
+            else
+            {
+                return RedirectToAction("Error", "Shared");
+            }
         }
         public IActionResult MakaleGoster(Guid id)
         {
