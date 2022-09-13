@@ -108,6 +108,7 @@ namespace UI.Controllers
             {
                 Makale makale = new Makale();
                 makale.Id = makaleVM.Id;
+                makale.UyeId = makaleVM.UyeId;
                 makale.MakaleBasligi = makaleVM.MakaleBasligi;
                 makale.MakaleIcerigi = makaleVM.MakaleIcerigi;
                 makale.OkunmaSayisi = makaleVM.OkunmaSayisi;
