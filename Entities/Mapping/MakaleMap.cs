@@ -17,7 +17,7 @@ namespace Entities.Mapping
             builder.Property(x => x.MakaleBasligi).HasMaxLength(50).IsRequired(false);
             builder.Property(x => x.MakaleIcerigi).HasMaxLength(10000).IsRequired(false);
             builder.Property(x => x.ResimYolu).IsRequired(false);
-            builder.Property(x => x.OkunmaSayisi).IsRequired(true);
+            builder.Property(x => x.OkunmaSayisi).IsRequired(false);
             builder.Property(x => x.OnayliMi).IsRequired(true);
             builder.HasOne(x => x.Uye).WithMany(x => x.Makaleler);
             base.Configure(builder);    

@@ -24,7 +24,7 @@ namespace UI.Models.ViewModels
         public IFormFile? Resim { get; set; }
         [Display(Name ="Okunma Sayısı")]
         [ReadOnly(true)]
-        public int OkunmaSayisi { get; set; }
+        public int? OkunmaSayisi { get; set; }
         public bool OnayliMi { get; set; }
         [HiddenInput]
         public Guid UyeId { get; set; } //FK

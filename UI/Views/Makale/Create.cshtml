@@ -25,11 +25,11 @@
                 <input asp-for="Resim" type="file" class="form-control" accept=".jpg,.png,.gif,.jpeg" />
                 <span asp-validation-for="ResimYolu" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @* <div class="form-group">
                 <label asp-for="OkunmaSayisi" class="control-label"></label>
-                <input type="number" asp-for="OkunmaSayisi" class="form-control" />
+                <input type="number" asp-for="OkunmaSayisi" class="form-control" readonly />
                 <span asp-validation-for="OkunmaSayisi" class="text-danger"></span>
-            </div>
+            </div>*@@*bu ksım kaldırılacak çünkü okunma sayısı otomatik hesaplanacak*@
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="OnayliMi" /> @Html.DisplayNameFor(model => model.OnayliMi)

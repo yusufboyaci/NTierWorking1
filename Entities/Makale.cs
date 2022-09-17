@@ -12,7 +12,7 @@ namespace Entities
         public string? MakaleIcerigi { get; set; }
         public string? MakaleBasligi { get; set; }
         public string? ResimYolu { get; set; }
-        public int OkunmaSayisi { get; set; }
+        public int? OkunmaSayisi { get; set; }
         public bool OnayliMi { get; set; }
         public Guid UyeId { get; set; } //FK
         public virtual Uye Uye { get; set; }

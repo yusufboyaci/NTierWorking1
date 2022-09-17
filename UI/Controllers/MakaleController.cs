@@ -47,6 +47,7 @@ namespace UI.Controllers
         {
             if (ModelState.IsValid && makaleVM != null)
             {
+               // makaleVM.OkunmaSayisi = 
                 Makale makale = new Makale();
                 makale.UyeId = id;
                 makale.MakaleBasligi = makaleVM.MakaleBasligi;
