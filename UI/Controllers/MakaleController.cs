@@ -77,7 +77,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
             return RedirectToAction("Index", "Makale", new { id = id });
         }
@@ -99,7 +99,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
         [HttpPost]
@@ -138,7 +138,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
         [HttpGet]
@@ -159,7 +159,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
         [HttpPost]
@@ -172,12 +172,14 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
         public IActionResult MakaleGoster(Guid id)
         {
             Makale makale = _makaleRepository.GetById(id);
+            makale.OkunmaSayisi++;
+            _makaleRepository.Update(makale);
             if (makale != null)
             {
                 MakaleVM makaleVM = new MakaleVM();
@@ -192,7 +194,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
     }

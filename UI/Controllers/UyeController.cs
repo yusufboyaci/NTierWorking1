@@ -86,7 +86,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
             return RedirectToAction("Index", "Uye");
         }
@@ -111,7 +111,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
         [HttpPost]
@@ -151,7 +151,7 @@ namespace UI.Controllers
                 }
                 return RedirectToAction("Index", "Uye");
             }
-            return RedirectToAction("Error", "Shared");
+            return RedirectToAction("Error", "Home");
         }
         [HttpGet]
         public IActionResult Delete(Guid id)
@@ -174,7 +174,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
         [HttpPost]
@@ -203,7 +203,7 @@ namespace UI.Controllers
             }
             else
             {
-                return RedirectToAction("Error", "Shared");
+                return RedirectToAction("Error", "Home");
             }
         }
     }
